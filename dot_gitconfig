@@ -1,9 +1,0 @@
-[user]
-	email = andrew@robbinsa.me
-	name = Andrew Robbins
-	signingkey = A273EC67743954117BCC521D35DDF5BA9EA5E940!
-[core]
-	autocrlf=false
-	editor = \"C:\\Users\\Andrew\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
-[gpg]
-	program = C:\\Program Files (x86)\\GnuPG\\bin\\gpg.exe

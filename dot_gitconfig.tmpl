@@ -1,0 +1,35 @@
+[user]
+	email = andrew@robbinsa.me
+	name = Andrew Robbins
+	signingKey = A273EC67743954117BCC521D35DDF5BA9EA5E940
+[commit]
+	gpgSign = true
+[tag]
+forceSignAnnotated = true
+[core]
+{{ if eq .chezmoi.os "windows" }}
+	editor = \"{{ .chezmoi.homeDir }}\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
+	longpaths = true
+[gpg]
+	program = {{ .chezmoi.homeDir }}\\scoop\\apps\\gnupg\\current\\bin\\gpg.exe
+{{ else if eq .chezmoi.os "linux" }}
+    editor = $EDITOR
+	longpaths = true
+[gpg]
+    program = gpg
+{{ end }}
+[diff]
+	tool = vsdiffmerge
+[difftool]
+	prompt = true
+[difftool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
+	keepBackup = false
+[merge]
+	tool = vsdiffmerge
+[mergetool]
+	prompt = true
+[mergetool "vsdiffmerge"]
+	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
+	keepBackup = false
+	trustExitCode = true
