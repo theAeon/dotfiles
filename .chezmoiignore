@@ -1,0 +1,6 @@
+{{ if ne .chezmoi.os "windows" }}
+Documents/PowerShell/*
+{{ end }}/
+{{ if eq .chezmoi.os "windows" }}
+.config/powershell/*
+{{ end }}
