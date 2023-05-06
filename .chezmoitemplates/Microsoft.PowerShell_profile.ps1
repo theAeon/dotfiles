@@ -1,5 +1,8 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/negligible.omp.json" | Invoke-Expression
 Import-Module scoop-completion
+Import-Module posh-git
+Import-Module PoshColor
+Import-Module PSUtil
 Import-Module 'C:\Users\andrew\scoop\apps\gsudo\current\gsudoModule.psd1'
 Set-Alias 'sudo' 'gsudo'
 
