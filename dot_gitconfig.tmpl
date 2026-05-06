@@ -18,6 +18,12 @@
 	tool = winmerge
 [merge]
 	tool = winmerge
+[credential "https://github.com"]
+	helper =
+	helper = !'{{ .chezmoi.homeDir }}\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !'{{ .chezmoi.homeDir }}\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 {{ else if eq .chezmoi.os "linux" }}
     editor = $EDITOR
 	longpaths = true
@@ -27,18 +33,18 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+[credential "https://github.com"]
+	helper =
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !gh auth git-credential
 {{ end }}
 [difftool]
 	prompt = true
 [mergetool]
 	prompt = true
-[credential "https://github.com"]
-	helper =
-	helper = !'C:\\Users\\andrew\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
-[credential "https://gist.github.com"]
-	helper =
-	helper = !'C:\\Users\\andrew\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
-	[pull]
+[pull]
 	rebase = false
 [fetch]
 	prune = false
