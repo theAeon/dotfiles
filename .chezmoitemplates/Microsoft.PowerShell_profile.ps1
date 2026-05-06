@@ -1,11 +1,21 @@
 oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/negligible.omp.json" | Invoke-Expression
+{{ if eq .chezmoi.os "windows" }}
 Import-Module scoop-completion
-Import-Module posh-git
-Import-Module PoshColor
-Import-Module PSUtil
-Import-Module 'C:\Users\andrew\scoop\apps\gsudo\current\gsudoModule.psd1'
-Set-Alias 'sudo' 'gsudo'
+Invoke-Expression (&sfsu hook)
+Invoke-Expression (&scoop-search --hook)
+(& pixi completion --shell powershell) | Out-String | Invoke-Expression
 
+Import-Module '{{ .chezmoi.homeDir }}\scoop\apps\gsudo\current\gsudoModule.psd1'
+Set-Alias 'sudo' 'gsudo'
+fnm env --use-on-cd | Out-String | Invoke-Expression
+
+
+#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+
+Import-Module -Name Microsoft.WinGet.CommandNotFound
+#f45873b3-b655-43a6-b217-97c00aa0db58
+
+{{ end }}
 
 # powershell completion for oh-my-posh                           -*- shell-script -*-
 
@@ -238,6 +248,7 @@ filter __oh-my-posh_escapeStringWithSpecialChars {
 
 Register-ArgumentCompleter -CommandName 'oh-my-posh' -ScriptBlock $__oh_my_poshCompleterBlock
 
+
 # powershell completion for chezmoi                              -*- shell-script -*-
 
 function __chezmoi_debug {
@@ -466,4 +477,6 @@ Register-ArgumentCompleter -CommandName 'chezmoi' -ScriptBlock {
 
     }
 }
-
+Get-ChildItem "$PROFILE\..\Completions\" | ForEach-Object {
+    . $_.FullName
+}

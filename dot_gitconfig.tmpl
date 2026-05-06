@@ -5,31 +5,46 @@
 [commit]
 	gpgSign = true
 [tag]
-forceSignAnnotated = true
+	forceSignAnnotated = true
 [core]
 {{ if eq .chezmoi.os "windows" }}
 	editor = \"{{ .chezmoi.homeDir }}\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code\" --wait
 	longpaths = true
+	autocrlf = input
+	symlinks = true
 [gpg]
 	program = {{ .chezmoi.homeDir }}\\scoop\\apps\\gnupg\\current\\bin\\gpg.exe
+[diff]
+	tool = winmerge
+[merge]
+	tool = winmerge
 {{ else if eq .chezmoi.os "linux" }}
     editor = $EDITOR
 	longpaths = true
 [gpg]
     program = gpg
-{{ end }}
 [diff]
-	tool = vsdiffmerge
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+{{ end }}
 [difftool]
 	prompt = true
-[difftool "vsdiffmerge"]
-	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
-	keepBackup = false
-[merge]
-	tool = vsdiffmerge
 [mergetool]
 	prompt = true
-[mergetool "vsdiffmerge"]
-	cmd = \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$REMOTE\" \"$LOCAL\" \"$BASE\" \"$MERGED\" //m
-	keepBackup = false
-	trustExitCode = true
+[credential "https://github.com"]
+	helper =
+	helper = !'C:\\Users\\andrew\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !'C:\\Users\\andrew\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
+	[pull]
+	rebase = false
+[fetch]
+	prune = false
+[rebase]
+	autoStash = false
+	autosquash = false
+	updateRefs = false
+[i18n]
+	filesEncoding = utf-8

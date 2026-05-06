@@ -1,1 +1,9 @@
+{{ if eq .chezmoi.os "windows" }}
+
+{"Microsoft.PowerShell:ExecutionPolicy":"RemoteSigned","ExperimentalFeatures":["PSFeedbackProvider","PSCommandNotFoundSuggestion"]}
+
+{{ else }}
+
 {"Microsoft.PowerShell:ExecutionPolicy":"RemoteSigned"}
+
+{{ end }}
