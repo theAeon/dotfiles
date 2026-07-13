@@ -19,10 +19,8 @@
 [merge]
 	tool = winmerge
 [credential "https://github.com"]
-	helper =
 	helper = !'{{ .chezmoi.homeDir }}\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 [credential "https://gist.github.com"]
-	helper =
 	helper = !'{{ .chezmoi.homeDir }}\\scoop\\apps\\gh\\current\\bin\\gh.exe' auth git-credential
 {{ else if eq .chezmoi.os "linux" }}
     editor = $EDITOR
@@ -34,10 +32,8 @@
 [merge]
 	tool = vimdiff
 [credential "https://github.com"]
-	helper =
 	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
 	helper = !gh auth git-credential
 {{ end }}
 [difftool]
