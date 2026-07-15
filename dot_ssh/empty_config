@@ -1,0 +1,20 @@
+Host *
+  IdentityAgent ~/.1password/agent.sock
+
+Host Bastion
+  Hostname login.itd.umich.edu
+  User robbiand
+  PubkeyAuthentication No
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+  ControlMaster auto
+
+
+Host *.arc-ts.umich.edu
+  ProxyJump Bastion
+  PasswordAuthentication Yes
+  PubkeyAuthentication No
+  ControlPath ~/.ssh/sockets/%r@%h:%p
+  ControlMaster auto
+
+Host 172.28.165.1
+  ForwardAgent yes
