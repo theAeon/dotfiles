@@ -5,16 +5,19 @@ Host Bastion
   Hostname login.itd.umich.edu
   User robbiand
   PubkeyAuthentication No
+{{ if ne .chezmoi.os "windows" }}
   ControlPath ~/.ssh/sockets/%r@%h:%p
   ControlMaster auto
-
+{{ end }}
 
 Host *.arc-ts.umich.edu
   ProxyJump Bastion
   PasswordAuthentication Yes
   PubkeyAuthentication No
+{{ if ne .chezmoi.os "windows" }}
   ControlPath ~/.ssh/sockets/%r@%h:%p
   ControlMaster auto
+{{ end }}
 
 Host 172.28.165.1
   ForwardAgent yes
