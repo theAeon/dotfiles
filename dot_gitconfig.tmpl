@@ -1,7 +1,15 @@
 [user]
 	email = andrew@robbinsa.me
 	name = Andrew Robbins
+{{if ne .chezmoi.hostname "M-10R49F4"}}
 	signingKey = A273EC67743954117BCC521D35DDF5BA9EA5E940
+{{else if eq .chezmoi.hostname "M-10R49F4"}}
+	signingkey = {{.chezmoi.homeDir}}/.ssh/id_ed25519_sk.pub
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	allowedSignersFile = {{.chezmoi.homeDir}}/.ssh/allowed_signers
+{{end}}
 [commit]
 	gpgSign = true
 [tag]

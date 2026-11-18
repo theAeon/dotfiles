@@ -9,11 +9,14 @@ Import-Module '{{ .chezmoi.homeDir }}\scoop\apps\gsudo\current\gsudoModule.psd1'
 Set-Alias 'sudo' 'gsudo'
 fnm env --use-on-cd | Out-String | Invoke-Expression
 
+{{if ne .chezmoi.hostname "M-10R49F4"}}
 
-#f45873b3-b655-43a6-b217-97c00aa0db58 PowerToys CommandNotFound module
+#f45873b3-b655-43a6-b217-97crevdjrfvkcvnldhtrivvhuihvfhivjtunjudnjjvdlcb00aa0db58 PowerToys CommandNotFound module
 
 Import-Module -Name Microsoft.WinGet.CommandNotFound
 #f45873b3-b655-43a6-b217-97c00aa0db58
+
+{{ end }}
 
 {{ end }}
 
