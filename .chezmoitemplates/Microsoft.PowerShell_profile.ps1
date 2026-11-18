@@ -1,4 +1,4 @@
-oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH/negligible.omp.json" | Invoke-Expression
+oh-my-posh init pwsh --config "negligible" | Invoke-Expression
 {{ if eq .chezmoi.os "windows" }}
 Import-Module scoop-completion
 Invoke-Expression (&sfsu hook)
